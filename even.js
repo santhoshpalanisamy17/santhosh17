@@ -58,5 +58,5 @@ while (again) {
     again = confirm("Do you want to run the program again?");
 }
 
-alert("Thank you!");
+alert("Thank you");
 

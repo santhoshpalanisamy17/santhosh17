@@ -51,22 +51,17 @@
 
 // console.log(false && false)
 
-
-
 let name = prompt("Enter student name:");
 
 let m1 = Number(prompt("Enter Subject 1 marks:"));
-// if(m1 < 0 || m1 > 100 ){
-//     alert("Error: Marks must be between 0 and 100.");
-// }
+// if (m1 < 0 || m1 > 100){
+// alert("Enter a valid mark")}
 let m2 = Number(prompt("Enter Subject 2 marks:"));
-// if(m2 < 0 || m2 > 100 ){
-//     alert("Error: Marks must be between 0 and 100.");
-// }
+// if (m2 < 0 || m2 > 100){
+// alert("Enter a valid mark")}
 let m3 = Number(prompt("Enter Subject 3 marks:"));
-// if(m3 < 0 || m3 > 100 ){
-//     alert("Error: Marks must be between 0 and 100.");
-// }
+// if (m3 < 0 || m3 > 100){
+// alert("Enter a valid mark")}
 
 function calculateTotal() {
     return m1 + m2 + m3;
@@ -86,8 +81,7 @@ if (m1 < 0 || m1 > 100 ||
 
     alert("Error: Marks must be between 0 and 100.");
 
-} 
-else {
+} else {
 
     if (average >= 90) {
         grade = "A";
@@ -100,9 +94,11 @@ else {
     }
 
     alert(
-        "Student Name: " + name +"Total Marks: " + total + "Average: " + average.toFixed(2) +"Grade: " + grade
+        "Student Name: " + name +
+        "\nTotal Marks: " + total +
+        "\nAverage: " + average.toFixed(2) +
+        "\nGrade: " + grade
     );
-
 
     confirm("Do you want to calculate another student's result?");
 }

@@ -1,9 +1,9 @@
 function menu() {
-    console.log("1. Coffee - Rs.20");
-    console.log("2. Tea - Rs.15");
-    console.log("3. Juice - Rs.30");
-    console.log("4. Sandwich - Rs.50");
-    console.log("5. Chocolate - Rs.10");
+    console.log("1. Diary milk silk - Rs.150");
+    console.log("2. Monster - Rs.120");
+    console.log("3. Sprite - Rs.80");
+    console.log("4. Five star - Rs.50");
+    console.log("5. Fizz - Rs.70");
 }
 
 alert("Welcome to vending machine" )
@@ -42,8 +42,8 @@ while (again) {
     let item = Number(prompt("Enter item number (1-5):"));
     let amount = Number(prompt("Enter your amount:"));
 
-    let prices = [20, 15, 30, 50, 10];
-    let names = ["Coffee", "Tea", "Juice", "Sandwich", "Chocolate"];
+    let prices = [150, 120, 80, 50, 70];
+    let names = ["Diary milk silk", "Monster", "Sprite", "Five star", "Fizz"];
 
     if (item < 1 || item > 5 || !Number.isInteger(item)) {
         alert("Invalid item number!");

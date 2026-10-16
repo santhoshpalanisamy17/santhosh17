@@ -1,27 +1,27 @@
-var input = document.getElementById("missionInput");
-var list = document.getElementById("missionList");
-var colours = ["#eef2ff", "#ffe8e8", "#e8ffe8", "#fff8dc"];
-var colourIndex = 0;
+let input = document.getElementById("missionInput");
+let list = document.getElementById("missionList");
+let colours = ["#eef2ff", "#ffe8e8", "#e8ffe8", "#fff8dc"];
+let colourIndex = 0;
 
 function updateCounts() {
-  var total = list.children.length;
-  var done = document.getElementsByClassName("completed").length;
+  let total = list.children.length;
+  let done = document.getElementsByClassName("completed").length;
   document.getElementById("total").textContent = total;
   document.getElementById("completed").textContent = done;
   document.getElementById("pending").textContent = total - done;
 }
 
 function addMission() {
-  var text = input.value.trim();
+  let text = input.value.trim();
   if (text === "") {
     return;
   }
 
-  var li = document.createElement("li");
-  var span = document.createElement("span");
+  let li = document.createElement("li");
+  let span = document.createElement("span");
   span.textContent = text;
 
-  var delBtn = document.createElement("button");
+  let delBtn = document.createElement("button");
   delBtn.textContent = "Delete";
 
   li.onclick = function () {

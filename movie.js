@@ -4,7 +4,7 @@ const movies = [
         price: 150
     },
     {
-        name: "The Lion King",
+        name: "Interstellar",
         price: 120
     },
     {
@@ -42,9 +42,7 @@ function calculateTotal() {
     const quantity = Number(quantityInput.value);
     const price = getMoviePrice(movieName);
     if (
-        movieName !== "" &&
-        Number.isInteger(quantity) &&
-        quantity > 0
+        movieName !== "" && Number.isInteger(quantity) && quantity > 0
     ) {
         totalPrice.textContent = price * quantity;
     } else {
@@ -59,9 +57,7 @@ function showMessage(text, type) {
     message.style.color =
         type === "success" ? "#065f46" : "#991b1b";
     message.style.border =
-        type === "success"
-            ? "1px solid #a7f3d0"
-            : "1px solid #fecaca";
+        type === "success" ? "1px solid #a7f3d0" : "1px solid #fecaca";
 }
 
 bookingForm.addEventListener("submit", function(event) {
@@ -70,63 +66,39 @@ bookingForm.addEventListener("submit", function(event) {
     const showtime = showtimeSelect.value;
     const email = emailInput.value.trim();
     const quantity = Number(quantityInput.value);
-    // Check movie selection
+
     if (movieName === "") {
         showMessage("Please select a movie.", "error");
         return;
     }
 
-    // Check showtime selection
     if (showtime === "") {
         showMessage("Please select a showtime.", "error");
         return;
     }
 
-    // Check email
     if (email === "" ||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) 
         {
         showMessage("Please enter a valid email address.", "error");
         return;
     }
 
-    // Check ticket quantity
     if (!Number.isInteger(quantity) || quantity <= 0) {
-        showMessage(
-            "Ticket quantity must be a positive whole number.",
-            "error"
-        );
+        showMessage("Ticket quantity must be a positive whole number.","error");
         return;
     }
 
-    // Calculate price
     const price = getMoviePrice(movieName);
     const total = price * quantity;
-    // Create booking object
     const booking = {
-        id: nextBookingId++,
-        movie: movieName,
-        showtime: showtime,
-        email: email,
-        quantity: quantity,
-        total: total
+        id: nextBookingId++, movie: movieName, showtime: showtime, email: email, quantity: quantity, total: total
     };
-    // Store booking
     bookings.push(booking);
 
-    // Update booking display
     displayBookings();
+    showMessage("Booking created successfully! Total: ₹" + total + ". Email confirmation has NOT been sent yet.", "success");
 
-    // Display success message
-    showMessage(
-        "Booking created successfully! Total: ₹" + total +
-        ". Email confirmation has NOT been sent yet.",
-        "success"
-    );
-
-    // Reset form fields
     bookingForm.reset();
-
-    // Reset total price
     totalPrice.textContent = 0;
 
 });
@@ -137,39 +109,26 @@ function displayBookings() {
         .trim()
         .toLowerCase();
 
-    // Filter bookings
     const filteredBookings = bookings.filter(function(booking) {
-
-        return booking.movie
-            .toLowerCase()
-            .includes(searchText);
-
+        return booking.movie.toLowerCase() .includes(searchText);
     });
 
-    // Clear old booking cards
     bookingList.replaceChildren();
 
-    // Update total booking count
     bookingCount.textContent = bookings.length;
 
-    // Show empty message
     if (filteredBookings.length === 0) {
         const emptyMessage = document.createElement("div");
         emptyMessage.className = "empty-message";
         const heading = document.createElement("h3");
-        heading.textContent = bookings.length === 0
-            ? "No bookings yet."
-            : "No matching bookings found.";
+        heading.textContent = bookings.length === 0 ? "No bookings yet." : "No matching bookings found.";
         const description = document.createElement("p");
-        description.textContent = bookings.length === 0
-            ? "Book your favourite movies and see them here!"
-            : "Try searching for another movie.";
+        description.textContent = bookings.length === 0 ? "Book your favourite movies and see them here!": "Try searching for another movie.";
         emptyMessage.append(heading, description);
         bookingList.appendChild(emptyMessage);
         return;
     }
 
-    // Create a card for each booking
     filteredBookings.forEach(function(booking) {
         const card = document.createElement("div");
         card.className = "booking-card";
@@ -188,19 +147,10 @@ function displayBookings() {
         cancelButton.textContent = "Cancel Booking";
         cancelButton.className = "cancel-btn";
 
-        // Cancel this particular booking
         cancelButton.addEventListener("click", function() {
             cancelBooking(booking.id);
         });
-        card.append(
-            title,
-            showtime,
-            quantity,
-            email,
-            total,
-            cancelButton
-        );
-
+        card.append(title, showtime, quantity, email, total, cancelButton);
         bookingList.appendChild(card);
     });
 }
@@ -211,8 +161,7 @@ function cancelBooking(bookingId) {
         return booking.id !== bookingId;
     });
     if (bookings.length < previousCount) {
-        displayBookings();
-        showMessage("Booking cancelled successfully.", "success");
+        displayBookings(); showMessage("Booking cancelled successfully.", "success");
     }
 }
 

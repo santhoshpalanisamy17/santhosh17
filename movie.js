@@ -41,9 +41,7 @@ function calculateTotal() {
     const movieName = movieSelect.value;
     const quantity = Number(quantityInput.value);
     const price = getMoviePrice(movieName);
-    if (
-        movieName !== "" && Number.isInteger(quantity) && quantity > 0
-    ) {
+    if (movieName !== "" && Number.isInteger(quantity) && quantity > 0) {
         totalPrice.textContent = price * quantity;
     } else {
         totalPrice.textContent = 0;
@@ -90,9 +88,7 @@ bookingForm.addEventListener("submit", function(event) {
 
     const price = getMoviePrice(movieName);
     const total = price * quantity;
-    const booking = {
-        id: nextBookingId++, movie: movieName, showtime: showtime, email: email, quantity: quantity, total: total
-    };
+    const booking = { id: nextBookingId++, movie: movieName, showtime: showtime, email: email, quantity: quantity, total: total};
     bookings.push(booking);
 
     displayBookings();
@@ -104,26 +100,22 @@ bookingForm.addEventListener("submit", function(event) {
 });
 
 function displayBookings() {
-
     const searchText = searchBooking.value
         .trim()
         .toLowerCase();
-
     const filteredBookings = bookings.filter(function(booking) {
         return booking.movie.toLowerCase() .includes(searchText);
     });
 
     bookingList.replaceChildren();
-
     bookingCount.textContent = bookings.length;
-
     if (filteredBookings.length === 0) {
         const emptyMessage = document.createElement("div");
         emptyMessage.className = "empty-message";
         const heading = document.createElement("h3");
         heading.textContent = bookings.length === 0 ? "No bookings yet." : "No matching bookings found.";
         const description = document.createElement("p");
-        description.textContent = bookings.length === 0 ? "Book your favourite movies and see them here!": "Try searching for another movie.";
+        description.textContent = bookings.length === 0 ? "Book your favourite movies and see them here!" : "Try searching for another movie.";
         emptyMessage.append(heading, description);
         bookingList.appendChild(emptyMessage);
         return;
@@ -146,7 +138,6 @@ function displayBookings() {
         cancelButton.type = "button";
         cancelButton.textContent = "Cancel Booking";
         cancelButton.className = "cancel-btn";
-
         cancelButton.addEventListener("click", function() {
             cancelBooking(booking.id);
         });

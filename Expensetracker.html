@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendSmart | Expense Tracker</title>
+    <link rel="stylesheet" href="ExpenseTracker.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="with-icon">
+            <span class="icon">🐷</span>
+            <div class="without-icon">
+                <h1>SpendSmart</h1>
+                <p>Track | Manage | Save</p>
+            </div>
+
+        </div>
+
+        <div class="header-message">
+            <span>💰</span>
+            <p>Make every rupee count!</p>
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <section class="welcome-section">
+
+            <div>
+                <h2>Welcome to SpendSmart! 👋</h2>
+                <p>Track your expenses and take control of your money.</p>
+            </div>
+            <div class="today-date">
+                <span>📅</span>
+                <span id="currentDate"></span>
+            </div>
+
+        </section>
+
+
+        <!-- Dashboard -->
+        <section class="dashboard">
+
+            <div class="dashboard-card purple">
+
+                <div class="card-top">
+                    <span class="dashboard-icon">💸</span>
+                    <span class="card-label">THIS MONTH</span>
+                </div>
+                <h2 id="monthlySpending">₹0.00</h2>
+                <p>Monthly Spending</p>
+
+            </div>
+
+
+            <div class="dashboard-card blue">
+
+                <div class="card-top">
+                    <span class="dashboard-icon">🧾</span>
+                    <span class="card-label">RECORDS</span>
+                </div>
+                <h2 id="totalExpenses">0</h2>
+                <p>Total Expenses This Month</p>
+
+            </div>
+
+
+            <div class="dashboard-card green">
+
+                <div class="card-top">
+                    <span class="dashboard-icon">💰</span>
+                    <span class="card-label">BUDGET</span>
+                </div>
+                <h2 id="remainingBudget">Not set</h2>
+                <p>Remaining Budget</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Budget Section -->
+        <section class="section-box">
+
+            <div class="section-heading">
+                <h2>🎯 Set Monthly Budget</h2>
+                <p>Decide how much you want to spend this month.</p>
+            </div>
+
+            <form id="budgetForm" class="budget-form">
+
+                <div class="form-group">
+                    <label for="budgetAmount">Monthly Budget (₹)</label>
+                    <input type="number" id="budgetAmount" placeholder="Enter your monthly budget" min="0.01" step="0.01" required>
+                </div>
+
+                <button type="submit" class="primary-btn"> Set Budget</button>
+
+            </form>
+
+            <p id="budgetMessage" class="message" aria-live="polite"></p>
+            <div class="budget-progress-section">
+
+                <div class="progress-info">
+                    <span>Budget Used</span>
+                    <strong id="budgetPercentage">0%</strong>
+                </div>
+                <div class="progress-track" role="progressbar" aria-label="Monthly budget used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="budgetProgress">
+                    <div id="budgetProgressBar" class="progress-bar"></div>
+                </div>
+
+                <p id="budgetStatus" class="budget-status">Set a budget to track your spending.</p>
+
+            </div>
+        </section>
+
+
+        <!-- Add Expense Section -->
+        <section class="section-box">
+
+            <div class="section-heading">
+                <h2>➕ Add New Expense</h2>
+                <p>Enter your expense details below.</p>
+            </div>
+            <form id="expenseForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="expenseName">Expense Name</label>
+                        <input type="text" id="expenseName" placeholder="Example: Lunch" maxlength="80" required>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (₹)</label>
+                        <input type="number" id="expenseAmount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" required>
+                            <option value="">Select category</option>
+                            <option value="Food">🍔 Food</option>
+                            <option value="Transport">🚌 Transport</option>
+                            <option value="Shopping">🛍️ Shopping</option>
+                            <option value="Education">📚 Education</option>
+                            <option value="Entertainment">🎬 Entertainment</option>
+                            <option value="Bills">💡 Bills</option>
+                            <option value="Health">🏥 Health</option>
+                            <option value="Other">📦 Other</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="expenseDate">Expense Date</label>
+                        <input type="date" id="expenseDate" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-btn add-btn"> + Add Expense</button>
+            </form>
+            <p id="message" class="message" aria-live="polite"></p>
+        </section>
+
+
+        <!-- Expenses List -->
+        <section class="section-box expenses-section">
+
+            <div class="section-heading">
+                <h2>📋 Your Expenses</h2>
+                <p>View, search, filter, and manage your expenses.</p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="filter-container">
+                <div class="form-group search-group">
+                    <label for="searchInput">Search Expenses</label>
+                    <input  type="search"  id="searchInput"  placeholder="Search by expense name...">
+                </div>
+
+                <div class="form-group filter-group">
+                    <label for="categoryFilter">Filter by Category</label>
+                    <select id="categoryFilter">
+                        <option value="All">All Categories</option>
+                        <option value="Food">Food</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Education">Education</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Bills">Bills</option>
+                        <option value="Health">Health</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Expense Cards Will Appear Here -->
+            <div id="expenseList" class="expense-list"></div>
+
+            <!-- Empty Message -->
+            <div id="emptyMessage" class="empty-message">
+                <span class="empty-icon">🪙</span>
+                <h3>No expenses added yet.</h3>
+                <p>Add your first expense to start tracking your money!</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">🐷 <strong>SpendSmart</strong></div>
+            <p>Track better. Spend smarter. Save more.</p>
+            <p class="copyright"> &copy; 2026 SpendSmart. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script src="ExpenseTracker.js"></script>
+
+</body>
+</html>
